@@ -3,4 +3,7 @@ class PagesController < ApplicationController
     @title = "Home"
   end
 
+  def drivers
+    @title = "Drivers Details"
+  end
 end

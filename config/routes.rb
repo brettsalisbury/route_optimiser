@@ -1,4 +1,6 @@
 RouteOptimiser::Application.routes.draw do
+  match '/drivers', :to => 'pages#drivers', :as => :drivers
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
