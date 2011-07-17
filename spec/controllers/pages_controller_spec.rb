@@ -22,4 +22,18 @@ describe PagesController do
                                          :content => "Start now!")
     end
   end
+
+  describe "GET 'drivers'" do
+ 
+    it "should be successful" do
+      get 'drivers'
+      response.should be_success
+    end
+
+    it "should contain the correct title" do
+      get 'drivers'
+      response.should have_selector("title",
+                                    :content => "Route Optimiser | Driver Entry")
+    end
+  end
 end

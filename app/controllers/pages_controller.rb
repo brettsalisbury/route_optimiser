@@ -4,6 +4,6 @@ class PagesController < ApplicationController
   end
 
   def drivers
-    @title = "Drivers Details"
+    @title = "Driver Entry"
   end
 end
