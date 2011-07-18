@@ -11,7 +11,7 @@ When /I should see the home page/ do
 end
 
 When /I should see some information describing what the site does and how I use it$/ do
-  pending
+  page.should have_selector("section", :class => "description")
 end
 
 When /I should not see a 404 page/ do
