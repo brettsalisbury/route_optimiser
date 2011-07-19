@@ -12,11 +12,8 @@
   <%= stylesheet_link_tag 'blueprint/print', :media => 'print' %>
   <!-- [if lt IE 8]><%= stylesheet_link_tag 'blueprint/ie' %><![endif]-->
   <%= stylesheet_link_tag 'custom', :media => 'screen' %>
-</head>
-<body>
 
-<%= yield %>
-
+  
   <!-- Add the call to google analytics here for now - later on refactor and move to another file -->
   <script type="text/javascript">
 
@@ -30,6 +27,16 @@
       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
     })();
   </script>
+</head>
 
+<body>
+  <div class="container">
+    <section class="round">
+      <% flash.each do |key, value| %>
+        <%= content_tag(:div, value, :class => "flash #{key}") %>
+      <% end %>
+      <%= yield %>
+    </section>
+  </div>
 </body>
 </html>
