@@ -110,7 +110,7 @@ a.start_button {
 
 /* Start page */
 div.problem_statement {
-  display: inline;
+  display: run-in;
   width: 600px;
   font-size: 110%;
   font-weight: bold;
