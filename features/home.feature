@@ -11,6 +11,6 @@ Scenario: The application has a home page
   And I should not see a 404 page
 
 Scenario: The application home page allows users to start the process
-  Given I go to the home page
+  Given I visit the home page
   When I indicate I want to start the analysis process
   Then I should see the driver entry page

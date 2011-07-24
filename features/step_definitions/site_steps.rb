@@ -1,13 +1,27 @@
 Given /I want to use the route optimiser site$/ do
-  pending
+  @sessions = ['session_1', 'session_2']
 end
 
 Given /I start the application$/ do
-  pending
 end
 
 Given /all information entered should be visible to me only within the site instance$/ do
- pending
+  @sessions.each do | session |
+    in_session(session) do
+      #TODO: Refactor the code handling multiple sessions to persist across method invocations,
+      # and move these first two part into Given and When statements.
+      visit root_path
+      click_link("Start")
+      fill_in "name", :with => session
+      click_button("Submit")
+    end
+  end
+
+  @sessions.each do | session |
+    in_session(session) do
+      page.should have_selector("name", :value => session)
+    end
+  end
 end
 
 Given /I am within a route optimiser session$/ do
