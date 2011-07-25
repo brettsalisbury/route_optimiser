@@ -6,36 +6,32 @@ describe Person do
     @attr = { :name => "Robert Baratheron", :address => "18 Jamison St, Sydney NSW" }
   end
 
-  it "should create a new instance given valid attributes" do
-    Person.create!(@attr)
+  it "should not be directly instancable at the base object level" do
+    invalid_person = Person.new(@attr)
+    invalid_person.should_not be_valid
   end
 
   it "should require a name" do
-    no_name_person = Person.new(@attr.merge(:name => ""))
+    no_name_person = Passenger.new(@attr.merge(:name => ""))
     no_name_person.should_not be_valid
   end
 
   it "should require an address" do
-    no_address_person = Person.new(@attr.merge(:address => ""))
+    no_address_person = Passenger.new(@attr.merge(:address => ""))
     no_address_person.should_not be_valid
-  end
-
-  it "should not have a type" do
-    verify_type_person = Person.new(@attr)
-    verify_type_person.type.should be_nil
   end
 
   it "should reject duplicate names" do
     #Put a user with the given name in the database
-    Person.create!(@attr)
-    person_with_duplicate_name = Person.create(@attr)
+    Passenger.create!(@attr)
+    person_with_duplicate_name = Passenger.create(@attr)
     person_with_duplicate_name.should_not be_valid
   end
 
   it "should reject identical names up to case" do
     upcased_name = @attr[:name].upcase
-    Person.create!(@attr.merge(:name => upcased_name))
-    person_with_duplicate_name = Person.new(@attr)
+    Passenger.create!(@attr.merge(:name => upcased_name))
+    person_with_duplicate_name = Passenger.new(@attr)
     person_with_duplicate_name.should_not be_valid
   end
 
@@ -59,7 +55,7 @@ describe "Driver" do
 
   it "should reject duplicate names with other people" do
     @person_attr = {:name => @attr[:name], :address => @attr[:address]}
-    Person.create!(@person_attr)
+    Passenger.create!(@person_attr)
     duplicate_name = Driver.create(@attr)
     duplicate_name.should_not be_valid
   end
@@ -74,11 +70,5 @@ describe "Passenger" do
   it "should be created as a Passenger" do
     verify_type_passenger = Passenger.new(@attr)
     verify_type_passenger.type.should == "Passenger"
-  end
-
-  it "should reject dupliate names with other people" do
-    Person.create!(@attr)
-    duplicate_name = Passenger.create(@attr)
-    duplicate_name.should_not be_valid
   end
 end

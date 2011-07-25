@@ -18,4 +18,5 @@ class Person < ActiveRecord::Base
   validates :name, :presence => true, 
                    :uniqueness => { :case_sensitive => false }
   validates :address, :presence => true
+  validates :type, :presence => true
 end
