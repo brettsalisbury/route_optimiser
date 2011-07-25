@@ -67,6 +67,18 @@ end
 
 describe "Passenger" do
 
-  it "should be created as a Passenger"
-  it "should reject dupliate names with other people"
+  before(:each) do
+     @attr = { :name => "Cerci Lannister", :address => "18 Jamison St, Sydney, NSW" }
+  end
+
+  it "should be created as a Passenger" do
+    verify_type_passenger = Passenger.new(@attr)
+    verify_type_passenger.type.should == "Passenger"
+  end
+
+  it "should reject dupliate names with other people" do
+    Person.create!(@attr)
+    duplicate_name = Passenger.create(@attr)
+    duplicate_name.should_not be_valid
+  end
 end

@@ -1,0 +1,2 @@
+class Passenger < Person
+end
