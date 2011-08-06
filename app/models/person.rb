@@ -10,13 +10,15 @@
 #  type            :string(255)
 #  created_at      :datetime
 #  updated_at      :datetime
+#  user_id         :integer
 #
 
 class Person < ActiveRecord::Base
-  attr_accessible :name, :address
+  attr_accessible :name, :address, :user_id
   
   validates :name, :presence => true, 
                    :uniqueness => { :case_sensitive => false }
   validates :address, :presence => true
   validates :type, :presence => true
+  validates :user_id, :presence => true
 end

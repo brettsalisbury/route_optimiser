@@ -32,11 +32,15 @@
 <body>
   <div class="container">
     <section class="round">
+    <% session[:session_id] %>  <!-- Force the session identifier to be generated for each page request -->
       <% flash.each do |key, value| %>
         <%= content_tag(:div, value, :class => "flash #{key}") %>
       <% end %>
       <%= yield %>
     </section>
+    <%= debug(params) if Rails.env.development? %>
+    <%= debug(session) if Rails.env.development? %>
+    <%= debug(request.session_options) if Rails.env.development? %>
   </div>
 </body>
 </html>

@@ -1,4 +1,23 @@
 RouteOptimiser::Application.routes.draw do
+  get "driver/index"
+
+  get "driver/show"
+
+  get "driver/new"
+
+  get "driver/create"
+
+  get "driver/edit"
+
+  get "driver/update"
+
+  get "driver/destroy"
+
+  resources :sessions, :only => [:new, :destroy]
+
+  get "sessions/new"
+  get "sessions/destroy"
+
   match '/drivers', :to => 'pages#drivers', :as => :drivers
 
   # The priority is based upon order of creation:
