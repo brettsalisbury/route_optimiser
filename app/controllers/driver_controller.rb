@@ -6,6 +6,8 @@ class DriverController < ApplicationController
   end
 
   def new
+    @title = "Driver Entry"
+    @driver = Driver.new
   end
 
   def create

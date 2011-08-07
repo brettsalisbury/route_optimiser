@@ -10,10 +10,11 @@ Given /all information entered should be visible to me only within the site inst
     in_session(session) do
       #TODO: Refactor the code handling multiple sessions to persist across method invocations,
       # and move these first two part into Given and When statements.
-      visit root_path
-      click_link("Start")
-      fill_in "name", :with => session
-      click_button("Submit")
+      #visit root_path
+      #click_link("Add driver")
+      #fill_in "name", :with => session
+      #click_button("Add driver")
+      pending
     end
   end
 

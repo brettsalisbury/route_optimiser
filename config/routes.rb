@@ -1,22 +1,6 @@
 RouteOptimiser::Application.routes.draw do
-  get "driver/index"
-
-  get "driver/show"
-
-  get "driver/new"
-
-  get "driver/create"
-
-  get "driver/edit"
-
-  get "driver/update"
-
-  get "driver/destroy"
-
-  resources :sessions, :only => [:new, :destroy]
-
-  get "sessions/new"
-  get "sessions/destroy"
+  resources :driver
+  resources :sessions
 
   match '/drivers', :to => 'pages#drivers', :as => :drivers
 
