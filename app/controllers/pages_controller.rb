@@ -5,6 +5,6 @@ class PagesController < ApplicationController
 
   def drivers
     @title = "Driver Entry"
-    redirect_to :controller => "driver", :action => "new"
+    redirect_to :controller => "drivers", :action => "new"
   end
 end
