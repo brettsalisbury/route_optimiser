@@ -5,18 +5,20 @@
   <div class="description">
     The route optimiser solves a simple problem, namely:
     <div class="problem_statement">"Given a group of people, with a number of vehicles, what is the most
-       efficient route between a single point and a collection of points"
+      efficient route between a single point and a collection of points"
     </div>
 
     <p>Using the app is simple - simply enter the following information:
     <ul>
-      <li>The number of drivers, vehicle passenger counts and the divers unique 
-          address,</li>
+      <li>The number of drivers, vehicle passenger counts and the divers unique
+        address,
+      </li>
       <li>The unique address of all passengers, and</li>
       <li>The common address and destination of travel, and route optimiser will
-          do the rest!</li>
+        do the rest!
+      </li>
     </p>
   </div>
 
-  <%= link_to "Start now!", drivers_path, :class => "start_button round" %>
+  <%= link_to "Start now!", new_driver_path, :class => "start_button round" %>
 </div>

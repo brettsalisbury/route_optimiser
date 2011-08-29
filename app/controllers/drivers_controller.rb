@@ -10,7 +10,7 @@ class DriversController < ApplicationController
   end
 
   def new
-    @title = "Driver Entry"
+    @title = "Add a new driver"
     @driver = Driver.new
   end
 

@@ -63,10 +63,29 @@ describe DriversController do
   describe "GET 'new'" do
     it "should be successful" do
       get 'new'
-      response.should have_selector("input", :id => "driver_name")
-      response.should have_selector("input", :id => "driver_address")
-      response.should have_selector("input", :id => "driver_passenger_count")
+      response.should be_success
     end
+
+    it "should have the right title" do
+      get 'new'
+      response.should have_selector("title", :content => "Add a new driver")
+    end
+
+    it "should have a name field" do
+      get 'new'
+      response.should have_selector("input[name='driver[name]'][type='text']")
+    end
+
+    it "should have an address field" do
+      get 'new'
+      response.should have_selector("input[name='driver[address]'][type='text']")
+    end
+
+    it "should have a passenger count field" do
+      get 'new'
+      response.should have_selector("input[name='driver[passenger_count]'][type='number']")
+    end
+
   end
 
   describe "GET 'create'"
