@@ -1,2 +1,2 @@
-class Passenger < Person
+class Passenger < ActiveRecord::Base
 end

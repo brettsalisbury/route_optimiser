@@ -1,2 +1,10 @@
-<h1>Driver#show</h1>
-<p>Find me in app/views/driver/show.html.erb</p>
+<h1><%= @driver.name %></h1>
+
+<ul class="driver">
+  <li>
+    <div class="label">Address:</div><%= @driver.address %></li>
+  <li>
+    <div class="label">Passenger capacity:</div><%= @driver.passenger_count %></li>
+</ul>
+
+<%= link_to "Edit", driver_path(@driver), :class => "edit_button round" %>

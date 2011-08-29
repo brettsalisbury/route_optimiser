@@ -5,6 +5,8 @@ class DriversController < ApplicationController
   end
 
   def show
+    @driver = Driver.find(params[:id])
+    @title = "Driver " + @driver[:name]
   end
 
   def new

@@ -12,21 +12,19 @@
 
 ActiveRecord::Schema.define(:version => 20110806024209) do
 
-  create_table "people", :force => true do |t|
-    t.string   "name"
-    t.string   "address"
-    t.integer  "passenger_count"
-    t.string   "type"
+  create_table "drivers", :force => true do |t|
+    t.string "name"
+    t.string "address"
+    t.integer "passenger_count"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "user_id"
   end
 
-  add_index "people", ["name"], :name => "index_people_on_name", :unique => true
+  add_index "drivers", ["name"], :name => "index_drivers_on_name", :unique => true
 
   create_table "sessions", :force => true do |t|
-    t.string   "session_id", :null => false
-    t.text     "data"
+    t.string "session_id", :null => false
+    t.text "data"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
