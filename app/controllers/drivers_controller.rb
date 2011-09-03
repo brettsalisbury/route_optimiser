@@ -15,9 +15,19 @@ class DriversController < ApplicationController
   end
 
   def create
+    @driver = Driver.new(params[:driver])
+    if @driver.save
+      flash[:success] = @driver.name + " has been added to the list of drivers!"
+      redirect_to Driver
+    else
+      @title = "Add a new driver"
+      render :new
+    end
   end
 
   def edit
+    @driver = Driver.find(params[:id])
+    @title = "Edit driver"
   end
 
   def update
