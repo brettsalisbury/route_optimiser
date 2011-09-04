@@ -241,7 +241,28 @@ describe DriversController do
 
   end
 
-  describe "GET 'destroy'"
-  it "should be successful"
+  describe "GET 'destroy'" do
+
+    before(:each) do
+      @driver = Factory(:driver)
+    end
+
+    it "should remove the driver" do
+      lambda do
+        delete :destroy, :id => @driver
+      end.should change(Driver, :count).by(-1)
+    end
+
+    it "should redirect to the drivers page" do
+      delete :destroy, :id => @driver
+      response.should redirect_to(drivers_path)
+    end
+
+    it "should have a flash message" do
+      delete :destroy, :id => @driver
+      flash[:success].should =~ /removed/
+    end
+
+  end
 
 end

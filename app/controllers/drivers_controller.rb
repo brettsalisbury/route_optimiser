@@ -42,6 +42,9 @@ class DriversController < ApplicationController
   end
 
   def destroy
+    Driver.find(params[:id]).destroy
+    flash[:success] = "Driver removed"
+    redirect_to drivers_path
   end
 
 end
