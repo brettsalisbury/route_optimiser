@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110806024209) do
+ActiveRecord::Schema.define(:version => 20110904053124) do
 
   create_table "drivers", :force => true do |t|
     t.string "name"
@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(:version => 20110806024209) do
     t.integer "passenger_count"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string "session_id"
   end
 
   add_index "drivers", ["name"], :name => "index_drivers_on_name", :unique => true

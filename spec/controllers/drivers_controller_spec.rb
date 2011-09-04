@@ -42,7 +42,7 @@ describe DriversController do
 
     it "should contain the details of the driver on the page" do
       get :show, :id => @driver
-      response.should have_selector("li", :content => @driver.name)
+      response.should have_selector("h1", :content => @driver.name)
       response.should have_selector("li", :content => @driver.address)
       response.should have_selector("li", :content => @driver.passenger_count.to_s)
     end
@@ -54,7 +54,7 @@ describe DriversController do
 
     it "should contain a link to the edit driver page" do
       get :show, :id => @driver
-      response.should have_selector("a", :href => driver_path(@driver), :content => "Edit")
+      response.should have_selector("a", :href => edit_driver_path(@driver), :content => "Edit")
     end
 
     it "should show only the drivers created by this user"
@@ -86,6 +86,7 @@ describe DriversController do
       response.should have_selector("input[name='driver[passenger_count]'][type='number']")
     end
 
+    it "should only allow editing of drivers created by this user"
   end
 
   describe "GET 'create'" do
@@ -116,6 +117,7 @@ describe DriversController do
         response.should render_template('new')
       end
 
+      it "should not require a session id attribute"
     end
 
     describe "success" do
@@ -143,6 +145,10 @@ describe DriversController do
         post :create, :driver => @attr
         flash[:success].should =~/Stanis Batheron has been added to the list of drivers!/i
       end
+
+      it "should not require a session_id attribute"
+
+      it "should be created with the user's session id"
 
     end
   end
@@ -189,6 +195,8 @@ describe DriversController do
       response.should have_selector("a", :href => drivers_path,
                                     :content => "Cancel")
     end
+
+    it "should only allow editing of drivers created by this user"
   end
 
   describe "GET 'update'" do
@@ -212,6 +220,8 @@ describe DriversController do
         put :update, :id => @driver, :driver => @attr
         response.should have_selector("title", :content => "Edit driver")
       end
+
+      it "should not require a session_id attribute"
     end
 
     describe "success" do
@@ -237,6 +247,9 @@ describe DriversController do
         put :update, :id => @driver, :driver => @attr
         flash[:success].should =~ /updated/
       end
+
+      it "should not require a session_id attribute"
+
     end
 
   end
@@ -262,6 +275,8 @@ describe DriversController do
       delete :destroy, :id => @driver
       flash[:success].should =~ /removed/
     end
+
+    it "should not allow deletion of other users's drivers"
 
   end
 

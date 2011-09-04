@@ -16,6 +16,7 @@ class DriversController < ApplicationController
 
   def create
     @driver = Driver.new(params[:driver])
+    @driver.session_id = request.session_options[:id]
     if @driver.save
       flash[:success] = @driver.name + " has been added to the list of drivers!"
       redirect_to Driver

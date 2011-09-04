@@ -5,7 +5,8 @@ describe Driver do
   before(:each) do
     @attr = {:name => "Robert Baratheron",
              :address => "18 Jamison St, Sydney NSW",
-             :passenger_count => "5"}
+             :passenger_count => "5",
+             :session_id => "1"}
   end
 
   it "should be able to create a driver" do
@@ -27,6 +28,11 @@ describe Driver do
     no_passenger_count_driver.should_not be_valid
   end
 
+  it "should require a session" do
+    no_session_driver = Driver.new(@attr.merge(:session_id => ""))
+    no_session_driver.should_not be_valid
+  end
+
   it "should reject duplicate names" do
     #Put a user with the given name in the database
     Driver.create!(@attr)
@@ -40,4 +46,5 @@ describe Driver do
     person_with_duplicate_name = Driver.new(@attr)
     person_with_duplicate_name.should_not be_valid
   end
+
 end
