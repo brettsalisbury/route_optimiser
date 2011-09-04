@@ -31,6 +31,14 @@ class DriversController < ApplicationController
   end
 
   def update
+    @driver = Driver.find(params[:id])
+    if @driver.update_attributes(params[:driver])
+      flash[:success] = "Driver updated"
+      redirect_to @driver
+    else
+      @title = "Edit driver"
+      render 'edit'
+    end
   end
 
   def destroy

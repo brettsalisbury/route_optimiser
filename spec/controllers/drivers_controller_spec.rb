@@ -191,8 +191,55 @@ describe DriversController do
     end
   end
 
-  describe "GET 'update'"
-  it "should be successful"
+  describe "GET 'update'" do
+
+    before(:each) do
+      @driver = Factory(:driver)
+    end
+
+    describe "failure" do
+
+      before(:each) do
+        @attr = {:name => "", :address => "", :passenger_count => ""}
+      end
+
+      it "should render the edit page" do
+        put :update, :id => @driver, :driver => @attr
+        response.should render_template('edit')
+      end
+
+      it "should have the right title" do
+        put :update, :id => @driver, :driver => @attr
+        response.should have_selector("title", :content => "Edit driver")
+      end
+    end
+
+    describe "success" do
+
+      before(:each) do
+        @attr = {:name=> "Renly Batheron", :address=> "12 Porter St, Eltham, Victoria", :passenger_count => 5}
+      end
+
+      it "should modify the driver's attributes" do
+        put :update, :id => @driver, :driver => @attr
+        @driver.reload
+        @driver.name.should == @attr[:name]
+        @driver.address.should == @attr[:address]
+        @driver.passenger_count.should == @attr[:passenger_count]
+      end
+
+      it "should redirect to the user show page" do
+        put :update, :id => @driver, :driver => @attr
+        response.should redirect_to(driver_path(@driver))
+      end
+
+      it "should have a flash message" do
+        put :update, :id => @driver, :driver => @attr
+        flash[:success].should =~ /updated/
+      end
+    end
+
+  end
 
   describe "GET 'destroy'"
   it "should be successful"
