@@ -33,18 +33,10 @@ describe Driver do
     no_session_driver.should_not be_valid
   end
 
-  it "should reject duplicate names" do
-    #Put a user with the given name in the database
+  it "should accept duplicate names" do
     Driver.create!(@attr)
     person_with_duplicate_name = Driver.create(@attr)
-    person_with_duplicate_name.should_not be_valid
-  end
-
-  it "should reject identical names up to case" do
-    upcased_name = @attr[:name].upcase
-    Driver.create!(@attr.merge(:name => upcased_name))
-    person_with_duplicate_name = Driver.new(@attr)
-    person_with_duplicate_name.should_not be_valid
+    person_with_duplicate_name.should be_valid
   end
 
 end

@@ -25,7 +25,11 @@ describe DriversController do
       end
     end
 
-    it "should show only the drivers created by this user"
+    it "should show only the drivers created by this user" do
+      @driver = Factory(:driver, :session_id => "2")
+      get :index
+      @drivers.should_not include()
+    end
 
   end
 

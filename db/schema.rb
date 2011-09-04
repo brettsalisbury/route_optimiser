@@ -21,8 +21,6 @@ ActiveRecord::Schema.define(:version => 20110904053124) do
     t.string "session_id"
   end
 
-  add_index "drivers", ["name"], :name => "index_drivers_on_name", :unique => true
-
   create_table "sessions", :force => true do |t|
     t.string "session_id", :null => false
     t.text "data"
